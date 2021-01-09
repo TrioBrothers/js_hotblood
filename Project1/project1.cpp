@@ -18,52 +18,52 @@ int accountPrice[100];
 bool bankProgram = true;
 
 void createAccount(void) {
-	cout << "[°èÁÂ °³¼³]" << endl;
-	cout << "°èÁÂ ID : ";
+	cout << "[ê³„ì¢Œ ê°œì„¤]" << endl;
+	cout << "ê³„ì¢Œ ID : ";
 	cin >> tmpID;
 	accountID[index] = tmpID;
-	cout << "ÀÌ¸§ : ";
+	cout << "ì´ë¦„ : ";
 	cin >> tmpName;
 	accountName[index] = tmpName;
-	cout << "ÀÔ±Ý¾× : ";
+	cout << "ìž…ê¸ˆì•¡ : ";
 	cin >> tmpPrice;
 	accountPrice[index] = tmpPrice;
 	index++;
 }
 
 void deposit(void) {
-	cout << "[ÀÔ±Ý]" << endl;
-	cout << "°èÁÂ ID : ";
+	cout << "[ìž…ê¸ˆ]" << endl;
+	cout << "ê³„ì¢Œ ID : ";
 	cin >> tmpID;
-	cout << "ÀÔ±Ý¾× : ";
+	cout << "ìž…ê¸ˆì•¡ : ";
 	cin >> tmpPrice;
 	for (int i = 0; i < index; i++) {
 		if (accountID[i] == tmpID) {
 			accountPrice[i] += tmpPrice;
-			cout << "ÀÔ±Ý ¿Ï·á";
+			cout << "ìž…ê¸ˆ ì™„ë£Œ";
 			break;
 		}
 		else if (i+1 == index) {
-			cout << "°èÁÂ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù." << endl;
+			cout << "ê³„ì¢Œ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
 			break;
 		}
 	}
 }
 
 void withdraw(void) {
-	cout << "[Ãâ±Ý]" << endl;
-	cout << "°èÁÂ ID : ";
+	cout << "[ì¶œê¸ˆ]" << endl;
+	cout << "ê³„ì¢Œ ID : ";
 	cin >> tmpID;
-	cout << "Ãâ±Ý¾× : ";
+	cout << "ì¶œê¸ˆì•¡ : ";
 	cin >> tmpPrice;
 	for (int i = 0; i < index; i++) {
 		if (accountID[i] == tmpID) {
 			accountPrice[i] -= tmpPrice;
-			cout << "Ãâ±Ý ¿Ï·á";
+			cout << "ì¶œê¸ˆ ì™„ë£Œ";
 			break;
 		}
 		else if (i+1 == index) {
-			cout << "°èÁÂ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù." << endl;
+			cout << "ê³„ì¢Œ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
 			break;
 		}
 	}
@@ -72,11 +72,11 @@ void withdraw(void) {
 void showAccount(void) {
 	for (int i = 0; i < index; i++) {
 		cout << "===============" << endl;
-		cout << "°èÁÂ ID : ";
+		cout << "ê³„ì¢Œ ID : ";
 		cout << accountID[i] << endl;
-		cout << "ÀÌ¸§ : ";
+		cout << "ì´ë¦„ : ";
 		cout << accountName[i] << endl;
-		cout << "ÀÜ¾× : ";
+		cout << "ìž”ì•¡ : ";
 		cout << accountPrice[i] << endl;
 		cout << "===============" << endl;
 	}
@@ -88,13 +88,13 @@ void exit(void) {
 
 void menu(void) {
 	while (bankProgram) {
-		cout << "-----¤ÑMenu-----" << endl;
-		cout << "1. °èÁÂ °³¼³" << endl;
-		cout << "2. ÀÔ ±Ý" << endl;
-		cout << "3. Ãâ ±Ý" << endl;
-		cout << "4. °èÁÂ Á¤º¸ ÀüÃ¼ Ãâ·Â" << endl;
-		cout << "5. ÇÁ·Î±×·¥ Á¾·á" << endl;
-		cout << "¼±ÅÃ : ";
+		cout << "-----ã…¡Menu-----" << endl;
+		cout << "1. ê³„ì¢Œ ê°œì„¤" << endl;
+		cout << "2. ìž… ê¸ˆ" << endl;
+		cout << "3. ì¶œ ê¸ˆ" << endl;
+		cout << "4. ê³„ì¢Œ ì •ë³´ ì „ì²´ ì¶œë ¥" << endl;
+		cout << "5. í”„ë¡œê·¸ëž¨ ì¢…ë£Œ" << endl;
+		cout << "ì„ íƒ : ";
 		cin >> num;
 
 		switch (num)
