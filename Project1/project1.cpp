@@ -1,126 +1,112 @@
 #include<iostream>
 #include<string>
+#include "Account.h"
 
 using std::cout;
 using std::cin;
-using std:: string;
-using std::istream;
 using std::endl;
 
-int num;
-int index = 0;
+const int accAmount = 100;
+Account* acc[accAmount];
 int tmpID;
-string tmpName;
-int tmpPrice;
-int accountID[100];
-string accountName[100];
-int accountPrice[100];
-bool bankProgram = true;
+char tmpName[accAmount];
+int tmpMoney;
+int index = 0;
 
-void createAccount(void) {
-	cout << "[ê³„ì¢Œ ê°œì„¤]" << endl;
-	cout << "ê³„ì¢Œ ID : ";
-	cin >> tmpID;
-	accountID[index] = tmpID;
-	cout << "ì´ë¦„ : ";
-	cin >> tmpName;
-	accountName[index] = tmpName;
-	cout << "ìž…ê¸ˆì•¡ : ";
-	cin >> tmpPrice;
-	accountPrice[index] = tmpPrice;
-	index++;
-}
-
-void deposit(void) {
-	cout << "[ìž…ê¸ˆ]" << endl;
-	cout << "ê³„ì¢Œ ID : ";
-	cin >> tmpID;
-	cout << "ìž…ê¸ˆì•¡ : ";
-	cin >> tmpPrice;
-	for (int i = 0; i < index; i++) {
-		if (accountID[i] == tmpID) {
-			accountPrice[i] += tmpPrice;
-			cout << "ìž…ê¸ˆ ì™„ë£Œ";
-			break;
-		}
-		else if (i+1 == index) {
-			cout << "ê³„ì¢Œ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
-			break;
-		}
-	}
-}
-
-void withdraw(void) {
-	cout << "[ì¶œê¸ˆ]" << endl;
-	cout << "ê³„ì¢Œ ID : ";
-	cin >> tmpID;
-	cout << "ì¶œê¸ˆì•¡ : ";
-	cin >> tmpPrice;
-	for (int i = 0; i < index; i++) {
-		if (accountID[i] == tmpID) {
-			accountPrice[i] -= tmpPrice;
-			cout << "ì¶œê¸ˆ ì™„ë£Œ";
-			break;
-		}
-		else if (i+1 == index) {
-			cout << "ê³„ì¢Œ ì •ë³´ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
-			break;
-		}
-	}
-}
-
-void showAccount(void) {
-	for (int i = 0; i < index; i++) {
-		cout << "===============" << endl;
-		cout << "ê³„ì¢Œ ID : ";
-		cout << accountID[i] << endl;
-		cout << "ì´ë¦„ : ";
-		cout << accountName[i] << endl;
-		cout << "ìž”ì•¡ : ";
-		cout << accountPrice[i] << endl;
-		cout << "===============" << endl;
-	}
-}
-
-void exit(void) {
-	bankProgram = false;
-}
-
-void menu(void) {
-	while (bankProgram) {
-		cout << "-----ã…¡Menu-----" << endl;
-		cout << "1. ê³„ì¢Œ ê°œì„¤" << endl;
-		cout << "2. ìž… ê¸ˆ" << endl;
-		cout << "3. ì¶œ ê¸ˆ" << endl;
-		cout << "4. ê³„ì¢Œ ì •ë³´ ì „ì²´ ì¶œë ¥" << endl;
-		cout << "5. í”„ë¡œê·¸ëž¨ ì¢…ë£Œ" << endl;
-		cout << "ì„ íƒ : ";
-		cin >> num;
-
-		switch (num)
-		{
-		case 1:
-			createAccount();
-			break;
-		case 2:
-			deposit();
-			break;
-		case 3:
-			withdraw();
-			break;
-		case 4:
-			showAccount();
-			break;
-		case 5:
-			exit();
-			break;
-		}
-
-	}
-}
+void createAccount();
+void deposit();
+void withdraw();
+void menu();
 
 int main(void) {
+    menu();
+    return 0;
+}
 
-	menu();
-	return 0;
+void createAccount() {
+    cout << "[°èÁÂ °³¼³]" << endl;
+    cout << "°èÁÂ ID : ";
+    cin >> tmpID;
+    cout << "ÀÌ¸§ : ";
+    cin >> tmpName;
+    cout << "ÀÔ±Ý¾× : ";
+    cin >> tmpMoney;
+    acc[index] = new Account(tmpID, tmpName, tmpMoney);
+    index++;
+}
+
+void deposit() {
+    cout << "[ÀÔ±Ý]" << endl;
+    cout << "°èÁÂ ID : ";
+    cin >> tmpID;
+    cout << "ÀÔ±Ý¾× : ";
+    cin >> tmpMoney;
+    for (int i = 0; i < index; i++) {
+        if (acc[i]->getID() == tmpID) {
+            int tmpBalance = acc[i]->getBalance();
+            tmpBalance += tmpMoney;
+            acc[i]->setBalance(tmpBalance);
+            return;
+        }
+    }
+    cout << "°èÁÂ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù." << endl;
+}
+
+void withdraw() {
+    cout << "[Ãâ±Ý]" << endl;
+    cout << "°èÁÂ ID : ";
+    cin >> tmpID;
+    cout << "Ãâ±Ý¾× : ";
+    cin >> tmpMoney;
+    for (int i = 0; i < index; i++) {
+        if (acc[i]->getID() == tmpID) {
+            int tmpBalance = acc[i]->getBalance();
+            if (tmpBalance < tmpMoney) {
+                cout << "°èÁÂ ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù." << endl;
+                return;
+            }
+            tmpBalance -= tmpMoney;
+            acc[i]->setBalance(tmpBalance);
+            return;
+        }
+    }
+    cout << "°èÁÂ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù." << endl;
+}
+
+void menu() {
+
+    int num;
+    while (true) {
+        cout << "-----¤ÑMenu-----" << endl;
+        cout << "1. °èÁÂ °³¼³" << endl;
+        cout << "2. ÀÔ ±Ý" << endl;
+        cout << "3. Ãâ ±Ý" << endl;
+        cout << "4. °èÁÂ Á¤º¸ ÀüÃ¼ Ãâ·Â" << endl;
+        cout << "5. ÇÁ·Î±×·¥ Á¾·á" << endl;
+        cout << "¼±ÅÃ : ";
+        cin >> num;
+
+        switch (num)
+        {
+        case 1:
+            createAccount();
+            break;
+        case 2:
+            deposit();
+            break;
+        case 3:
+            withdraw();
+            break;
+        case 4:
+            for (int i = 0; i < index; i++) {
+                acc[i]->showAccount();
+            }
+            break;
+        case 5:
+            for (int i = 0; i < index; i++) {
+                delete acc[i];
+            }
+            return;
+        }
+    }
 }
