@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 using std::cout;
 using std::endl;
@@ -16,6 +16,12 @@ public:
         AccountName = new char[nameLength];
         strcpy_s(AccountName, nameLength, name);
     }
+    Account(const Account& copy)
+        :AccountID(copy.AccountID), AccountBalance(copy.AccountBalance) {
+        int nameLength = strlen(copy.AccountName) + 1;
+        AccountName = new char[nameLength];
+        strcpy_s(AccountName, nameLength, copy.AccountName);
+    }
     int getID() const {
         return AccountID;
     }
@@ -29,11 +35,11 @@ public:
         AccountBalance = balance;
     }
     void showAccount() const {
-        cout << "°èÁÂ ID : ";
+        cout << "ê³„ì¢Œ ID : ";
         cout << AccountID << endl;
-        cout << "ÀÌ¸§ : ";
+        cout << "ì´ë¦„ : ";
         cout << AccountName << endl;
-        cout << "ÀÜ¾× : ";
+        cout << "ìž”ì•¡ : ";
         cout << AccountBalance << endl;
     }
     ~Account() {
