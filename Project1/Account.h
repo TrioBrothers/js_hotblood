@@ -19,10 +19,10 @@ public:
     int getID() const {
         return AccountID;
     }
-    char getName() {
+    char getName() const {
         return *AccountName;
     }
-    int getBalance() {
+    int getBalance() const {
         return AccountBalance;
     }
     void setBalance(int balance) {
