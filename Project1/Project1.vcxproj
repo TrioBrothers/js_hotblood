@@ -22,7 +22,7 @@
     <ClInclude Include="Account.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="project1.cpp" />
+    <ClCompile Include="project.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
