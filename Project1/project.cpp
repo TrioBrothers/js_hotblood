@@ -44,7 +44,7 @@ public:
                 return;
             }
         }
-        cout << "계좌 정보가 존재하지 않습니다." << endl;
+        printNoneAccount();
     }
     void withdraw() {
         cout << "[출금]" << endl;
@@ -56,7 +56,7 @@ public:
             if (acc[i]->getID() == tmpID) {
                 int tmpBalance = acc[i]->getBalance();
                 if (tmpBalance < tmpMoney) {
-                    cout << "계좌 잔액이 부족합니다." << endl;
+                    printNotEnoughBalance();
                     return;
                 }
                 tmpBalance -= tmpMoney;
@@ -64,7 +64,7 @@ public:
                 return;
             }
         }
-        cout << "계좌 정보가 존재하지 않습니다." << endl;
+        printNoneAccount();
     }
     void menu() {
 
@@ -102,6 +102,12 @@ public:
                 return;
             }
         }
+    }
+    void printNoneAccount() {
+        cout << "계좌 정보가 존재하지 않습니다." << endl;
+    }
+    void printNotEnoughBalance() {
+        cout << "계좌 잔액이 부족합니다." << endl;
     }
 };
 
