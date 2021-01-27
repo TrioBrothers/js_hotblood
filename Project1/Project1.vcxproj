@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="project.cpp" />

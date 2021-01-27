@@ -5,13 +5,13 @@
 class AccountHandler {
 private:
     Account* acc[accAmount];
-    int tmpID;
-    char tmpName[accAmount];
-    int tmpMoney;
     int index;
 public:
-    AccountHandler() {}
+    AccountHandler()
+        :index(0) {}
     void createAccount();
+    void makeNormalAccount();
+    void makeCreditAccount();
     void deposit();
     void withdraw();
     void printNoneAccount();
