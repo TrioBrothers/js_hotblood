@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Account.h"
 #include "NormalAccount.h"
-#define MAX_LEN 30
 
 using std::cout;
 using std::endl;

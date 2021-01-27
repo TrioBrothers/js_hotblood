@@ -1,11 +1,16 @@
 #pragma once
 #include "Account.h"
-#define accAmount 100
+#include "BankingCommonDecl.h"
 
 class AccountHandler {
 private:
     Account* acc[accAmount];
     int index;
+    int tmpID;
+    char tmpName[accAmount];
+    int tmpMoney;
+    int interRate;
+    int creditLevel;
 public:
     AccountHandler()
         :index(0) {}

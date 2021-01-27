@@ -4,36 +4,12 @@
 #include "Account.h"
 #include "NormalAccount.h"
 #include "HighCreditAccount.h"
-
-#define accAmount 100
+#include "AccountHandler.h"
+#include "BankingCommonDecl.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
-
-enum { Lev_A = 7, Lev_B = 4, Lev_C = 2 };
-
-class AccountHandler {
-private:
-    Account* acc[accAmount];
-    int index;
-    int tmpID;
-    char tmpName[accAmount];
-    int tmpMoney;
-    int interRate;
-    int creditLevel;
-public:
-    AccountHandler()
-        :index(0) {}
-    void createAccount();
-    void makeNormalAccount();
-    void makeCreditAccount();
-    void deposit();
-    void withdraw();
-    void printNoneAccount();
-    void printNotEnoughBalance();
-    void menu();
-};
 
 void AccountHandler::createAccount() {
     int sel;
@@ -163,10 +139,4 @@ void AccountHandler::menu() {
             return;
         }
     }
-}
-
-int main(void) {
-    AccountHandler handler;
-    handler.menu();
-    return 0;
 }

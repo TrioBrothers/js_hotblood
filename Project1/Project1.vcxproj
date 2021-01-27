@@ -21,8 +21,12 @@
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountHandler.h" />
+    <ClInclude Include="BankingCommonDecl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountHandler.cpp" />
+    <ClCompile Include="BankingSystemMain.cpp" />
     <ClCompile Include="project.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
