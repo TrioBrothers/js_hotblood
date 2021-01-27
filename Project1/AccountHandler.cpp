@@ -1,40 +1,64 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include "Account.h"
-
-#define accAmount 100
+#include "NormalAccount.h"
+#include "HighCreditAccount.h"
+#include "AccountHandler.h"
+#include "BankingCommonDecl.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
 
-class AccountHandler {
-private:
-    Account* acc[accAmount];
-    int tmpID;
-    char tmpName[accAmount];
-    int tmpMoney;
-    int index = 0;
-public:
-    AccountHandler() {}
-    void createAccount();
-    void deposit();
-    void withdraw();
-    void printNoneAccount();
-    void printNotEnoughBalance();
-    void menu();
-};
-
 void AccountHandler::createAccount() {
-    cout << "[계좌 개설]" << endl;
-    cout << "계좌 ID : ";
-    cin >> tmpID;
-    cout << "이름 : ";
-    cin >> tmpName;
-    cout << "입금액 : ";
-    cin >> tmpMoney;
-    acc[index] = new Account(tmpID, tmpName, tmpMoney);
+    int sel;
+    cout << "[계좌 종류 선택]" << endl;
+    cout << "1. 보통 예금 계좌" << endl;
+    cout << "2. 신용 신뢰 계좌" << endl;
+    cin >> sel;
+    if (sel == 1) {
+        makeNormalAccount();
+    }
+    else if (sel == 2) {
+        makeCreditAccount();
+    }
+    else {
+        cout << "번호를 잘못 선택하였습니다." << endl;
+    }
+}
+void AccountHandler::makeNormalAccount() {
+    cout << "[보통 예금 계좌 개설]" << endl;
+    cout << "계좌 ID: "; cin >> tmpID;
+    cout << "이름: "; cin >> tmpName;
+    cout << "입금액: "; cin >> tmpMoney;
+    cout << "이자율 : "; cin >> interRate;
+    cout << endl;
+    acc[index] = new NormalAccount(tmpID, tmpName, tmpMoney, interRate);
     index++;
+}
+void AccountHandler::makeCreditAccount() {
+    cout << "[신용 신뢰 계좌 개설]" << endl;
+    cout << "계좌 ID: "; cin >> tmpID;
+    cout << "이름: "; cin >> tmpName;
+    cout << "입금액: "; cin >> tmpMoney;
+    cout << "이자율 : "; cin >> interRate;
+    cout << "신용등급(1toA, 2toB, 3toC) : "; cin >> creditLevel;
+    cout << endl;
+    switch (creditLevel) {
+    case 1:
+        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_A);
+        index++;
+        break;
+    case 2:
+        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_B);
+        index++;
+        break;
+    case 3:
+        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_C);
+        index++;
+        break;
+    }
 }
 void AccountHandler::deposit() {
     cout << "[입금]" << endl;
@@ -44,9 +68,7 @@ void AccountHandler::deposit() {
     cin >> tmpMoney;
     for (int i = 0; i < index; i++) {
         if (acc[i]->getID() == tmpID) {
-            int tmpBalance = acc[i]->getBalance();
-            tmpBalance += tmpMoney;
-            acc[i]->setBalance(tmpBalance);
+            acc[i]->deposit(tmpMoney);
             return;
         }
     }
@@ -65,8 +87,7 @@ void AccountHandler::withdraw() {
                 printNotEnoughBalance();
                 return;
             }
-            tmpBalance -= tmpMoney;
-            acc[i]->setBalance(tmpBalance);
+            acc[i]->withdraw(tmpMoney);
             return;
         }
     }
@@ -118,10 +139,4 @@ void AccountHandler::menu() {
             return;
         }
     }
-}
-
-int main(void) {
-    AccountHandler handler;
-    handler.menu();
-    return 0;
 }
