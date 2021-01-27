@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#pragma once
+#include <iostream>
 #define MAX_LEN 30
 
 using std::cout;
@@ -32,6 +33,12 @@ public:
     }
     void setBalance(int balance) {
         AccountBalance = balance;
+    }
+    virtual void deposit(int money) {
+        AccountBalance += money;
+    }
+    void withdraw(int money) {
+        AccountBalance -= money;
     }
     void showAccount() const {
         cout << "계좌 ID : ";
