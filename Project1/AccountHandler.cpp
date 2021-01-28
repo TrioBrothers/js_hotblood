@@ -11,23 +11,23 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-void AccountHandler::createAccount() {
+void AccountHandler::CreateAccount() {
     int sel;
     cout << "[계좌 종류 선택]" << endl;
     cout << "1. 보통 예금 계좌" << endl;
     cout << "2. 신용 신뢰 계좌" << endl;
     cin >> sel;
     if (sel == 1) {
-        makeNormalAccount();
+        MakeNormalAccount();
     }
     else if (sel == 2) {
-        makeCreditAccount();
+        MakeCreditAccount();
     }
     else {
         cout << "번호를 잘못 선택하였습니다." << endl;
     }
 }
-void AccountHandler::makeNormalAccount() {
+void AccountHandler::MakeNormalAccount() {
     cout << "[보통 예금 계좌 개설]" << endl;
     cout << "계좌 ID: "; cin >> tmpID;
     cout << "이름: "; cin >> tmpName;
@@ -37,7 +37,7 @@ void AccountHandler::makeNormalAccount() {
     acc[index] = new NormalAccount(tmpID, tmpName, tmpMoney, interRate);
     index++;
 }
-void AccountHandler::makeCreditAccount() {
+void AccountHandler::MakeCreditAccount() {
     cout << "[신용 신뢰 계좌 개설]" << endl;
     cout << "계좌 ID: "; cin >> tmpID;
     cout << "이름: "; cin >> tmpName;
@@ -60,48 +60,48 @@ void AccountHandler::makeCreditAccount() {
         break;
     }
 }
-void AccountHandler::deposit() {
+void AccountHandler::Deposit() {
     cout << "[입금]" << endl;
     cout << "계좌 ID : ";
     cin >> tmpID;
     cout << "입금액 : ";
     cin >> tmpMoney;
     for (int i = 0; i < index; i++) {
-        if (acc[i]->getID() == tmpID) {
-            acc[i]->deposit(tmpMoney);
+        if (acc[i]->GetID() == tmpID) {
+            acc[i]->Deposit(tmpMoney);
             return;
         }
     }
-    printNoneAccount();;
+    PrintNoneAccount();;
 }
-void AccountHandler::withdraw() {
+void AccountHandler::Withdraw() {
     cout << "[출금]" << endl;
     cout << "계좌 ID : ";
     cin >> tmpID;
     cout << "출금액 : ";
     cin >> tmpMoney;
     for (int i = 0; i < index; i++) {
-        if (acc[i]->getID() == tmpID) {
-            int tmpBalance = acc[i]->getBalance();
+        if (acc[i]->GetID() == tmpID) {
+            int tmpBalance = acc[i]->GetBalance();
             if (tmpBalance < tmpMoney) {
-                printNotEnoughBalance();
+                PrintNotEnoughBalance();
                 return;
             }
-            acc[i]->withdraw(tmpMoney);
+            acc[i]->Withdraw(tmpMoney);
             return;
         }
     }
-    printNoneAccount();
+    PrintNoneAccount();
 }
 
-void AccountHandler::printNoneAccount() {
+void AccountHandler::PrintNoneAccount() {
     cout << "계좌 정보가 존재하지 않습니다." << endl;
 }
-void AccountHandler::printNotEnoughBalance() {
+void AccountHandler::PrintNotEnoughBalance() {
     cout << "계좌 잔액이 부족합니다." << endl;
 }
 
-void AccountHandler::menu() {
+void AccountHandler::Menu() {
 
     int num;
     bool booleanMenu = true;
@@ -118,17 +118,17 @@ void AccountHandler::menu() {
         switch (num)
         {
         case 1:
-            createAccount();
+            CreateAccount();
             break;
         case 2:
-            deposit();
+            Deposit();
             break;
         case 3:
-            withdraw();
+            Withdraw();
             break;
         case 4:
             for (int i = 0; i < index; i++) {
-                acc[i]->showAccount();
+                acc[i]->ShowAccount();
             }
             break;
         case 5:

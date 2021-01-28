@@ -6,6 +6,6 @@
 
 int main(void) {
     AccountHandler handler;
-    handler.menu();
+    handler.Menu();
     return 0;
 }

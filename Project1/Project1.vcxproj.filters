@@ -24,11 +24,11 @@
     <ClInclude Include="BankingCommonDecl.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="NormalAccount.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="project.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Account.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

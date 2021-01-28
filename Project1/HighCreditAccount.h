@@ -7,13 +7,13 @@ using std::cout;
 using std::endl;
 
 class HighCreditAccount : public NormalAccount {
-private:
-	int creditRating;
 public:
 	HighCreditAccount(const int ID, char* name, int balance, int intRate, int credRating)
 		:NormalAccount(ID, name, balance, intRate), creditRating(credRating) {}
-	virtual void deposit(int balance) {
-		NormalAccount::deposit(balance);
-		Account::deposit(balance * (creditRating / 100.0));
+	virtual void Deposit(int balance) {
+		NormalAccount::Deposit(balance);
+		Account::Deposit(balance * (creditRating / 100.0));
 	}
+private:
+	int creditRating;
 };
