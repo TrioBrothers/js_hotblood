@@ -9,10 +9,12 @@ public:
     void CreateAccount();
     void MakeNormalAccount();
     void MakeCreditAccount();
-    void Deposit();
-    void Withdraw();
-    void PrintNoneAccount();
-    void PrintNotEnoughBalance();
+    int CheckAccountID(int tmpID);
+    int CheckAccountBalance(int accNum, int tmpMoney);
+    void DepositMenu();
+    int Deposit(int tmpID, int tmpMoney);
+    void WithdrawMenu();
+    int Withdraw(int tmpID, int tmpMoney);
     void Menu();
 private:
     Account* acc[accAmount];
@@ -22,4 +24,5 @@ private:
     int tmpMoney;
     int interRate;
     int creditLevel;
+    int accNum;
 };
