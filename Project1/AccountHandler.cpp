@@ -45,20 +45,20 @@ void AccountHandler::MakeCreditAccount() {
     cout << "이자율 : "; cin >> interRate;
     cout << "신용등급(1toA, 2toB, 3toC) : "; cin >> creditLevel;
     cout << endl;
+    int lev = 0;
     switch (creditLevel) {
     case 1:
-        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_A);
-        index++;
+        lev = Lev_A; //7
         break;
     case 2:
-        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_B);
-        index++;
+        lev = Lev_B; //4
         break;
     case 3:
-        acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, Lev_C);
-        index++;
+        lev = Lev_C; //2
         break;
     }
+    acc[index] = new HighCreditAccount(tmpID, tmpName, tmpMoney, interRate, lev);
+    index++;
 }
 void AccountHandler::Deposit() {
     cout << "[입금]" << endl;
