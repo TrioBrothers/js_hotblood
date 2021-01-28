@@ -122,43 +122,13 @@ int AccountHandler::Withdraw(int tmpID, int tmpMoney) {
         }
     }
 }
-
-void AccountHandler::Menu() {
-
-    int num;
-    bool booleanMenu = true;
-    while (booleanMenu) {
-        cout << "-----ㅡMenu-----" << endl;
-        cout << "1. 계좌 개설" << endl;
-        cout << "2. 입 금" << endl;
-        cout << "3. 출 금" << endl;
-        cout << "4. 계좌 정보 전체 출력" << endl;
-        cout << "5. 프로그램 종료" << endl;
-        cout << "선택 : ";
-        cin >> num;
-
-        switch (num)
-        {
-        case 1:
-            CreateAccount();
-            break;
-        case 2:
-            DepositMenu();
-            break;
-        case 3:
-            WithdrawMenu();
-            break;
-        case 4:
-            for (int i = 0; i < index; i++) {
-                acc[i]->ShowAccount();
-            }
-            break;
-        case 5:
-            for (int i = 0; i < index; i++) {
-                delete acc[i];
-            }
-            booleanMenu = false;
-            return;
-        }
+void AccountHandler::ShowAccount() {
+    for (int i = 0; i < index; i++) {
+        acc[i]->ShowAccount();
+    }
+}
+void AccountHandler::DeleteAcc() {
+    for (int i = 0; i < index; i++) {
+        delete acc[i];
     }
 }

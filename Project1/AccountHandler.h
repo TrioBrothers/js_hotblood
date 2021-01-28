@@ -15,7 +15,8 @@ public:
     int Deposit(int tmpID, int tmpMoney);
     void WithdrawMenu();
     int Withdraw(int tmpID, int tmpMoney);
-    void Menu();
+    void ShowAccount();
+    void DeleteAcc();
 private:
     Account* acc[accAmount];
     int index;
