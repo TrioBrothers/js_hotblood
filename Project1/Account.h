@@ -9,6 +9,7 @@ class Account {
 public:
     Account(const int ID, char* name, int balance);
     Account(const Account& copy);
+    Account& operator=(const Account& ref);
     int GetID() const;
     char GetName() const;
     int GetBalance() const;
@@ -18,7 +19,7 @@ public:
     void ShowAccount() const;
     ~Account();
 private:
-    const int accountID;
+    int accountID;
     char accountName[MAX_LEN];
     int accountBalance;
 };

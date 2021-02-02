@@ -17,6 +17,14 @@ using std::endl;
         int nameLength = strlen(copy.accountName) + 1;
         strcpy_s(accountName, nameLength, copy.accountName);
     }
+    Account& Account::operator=(const Account& ref) {
+        accountID = ref.accountID;
+        delete[]accountName;
+        int nameLength = strlen(ref.accountName) + 1;
+        strcpy_s(accountName, nameLength, ref.accountName);
+        accountBalance = ref.accountBalance;
+        return *this;
+    }
     int Account::GetID() const {
         return accountID;
     }

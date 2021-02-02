@@ -1,5 +1,6 @@
 #pragma once
 #include "Account.h"
+#include "AccountArray.h"
 #include "BankingCommonDecl.h"
 
 class AccountHandler {
@@ -18,7 +19,7 @@ public:
     void ShowAccount();
     void DeleteAcc();
 private:
-    Account* acc[accAmount];
+    AccountArray acc;
     int index;
     int tmpID;
     char tmpName[accAmount];
