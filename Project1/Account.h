@@ -6,20 +6,20 @@ using std::cout;
 using std::endl;
 
 class Account {
-private:
-    const int AccountID;
-    char AccountName[MAX_LEN];
-    int AccountBalance;
-
 public:
     Account(const int ID, char* name, int balance);
     Account(const Account& copy);
-    int getID() const;
-    char getName() const;
-    int getBalance() const;
-    void setBalance(int balance);
-    virtual void deposit(int money);
-    void withdraw(int money);
-    void showAccount() const;
+    Account& operator=(const Account& ref);
+    int GetID() const;
+    char GetName() const;
+    int GetBalance() const;
+    void SetBalance(int balance);
+    virtual void Deposit(int money);
+    void Withdraw(int money);
+    void ShowAccount() const;
     ~Account();
+private:
+    int accountID;
+    char accountName[MAX_LEN];
+    int accountBalance;
 };
