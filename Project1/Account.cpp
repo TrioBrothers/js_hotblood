@@ -8,40 +8,48 @@ using std::endl;
 
 
     Account::Account(const int ID, char* name, int balance)
-        :AccountID(ID), AccountBalance(balance) {
+        :accountID(ID), accountBalance(balance) {
         int nameLength = strlen(name) + 1;
-        strcpy_s(AccountName, nameLength, name);
+        strcpy_s(accountName, nameLength, name);
     }
     Account::Account(const Account& copy)
-        :AccountID(copy.AccountID), AccountBalance(copy.AccountBalance) {
-        int nameLength = strlen(copy.AccountName) + 1;
-        strcpy_s(AccountName, nameLength, copy.AccountName);
+        :accountID(copy.accountID), accountBalance(copy.accountBalance) {
+        int nameLength = strlen(copy.accountName) + 1;
+        strcpy_s(accountName, nameLength, copy.accountName);
     }
-    int Account::getID() const {
-        return AccountID;
+    Account& Account::operator=(const Account& ref) {
+        accountID = ref.accountID;
+        delete[]accountName;
+        int nameLength = strlen(ref.accountName) + 1;
+        strcpy_s(accountName, nameLength, ref.accountName);
+        accountBalance = ref.accountBalance;
+        return *this;
     }
-    char Account::getName() const {
-        return *AccountName;
+    int Account::GetID() const {
+        return accountID;
     }
-    int Account::getBalance() const {
-        return AccountBalance;
+    char Account::GetName() const {
+        return *accountName;
     }
-    void Account::setBalance(int balance) {
-        AccountBalance = balance;
+    int Account::GetBalance() const {
+        return accountBalance;
     }
-    void Account::deposit(int money) {
-        AccountBalance += money;
+    void Account::SetBalance(int balance) {
+        accountBalance = balance;
     }
-    void Account::withdraw(int money) {
-        AccountBalance -= money;
+    void Account::Deposit(int money) {
+        accountBalance += money;
     }
-    void Account::showAccount() const {
+    void Account::Withdraw(int money) {
+        accountBalance -= money;
+    }
+    void Account::ShowAccount() const {
         cout << "°èÁÂ ID : ";
-        cout << AccountID << endl;
+        cout << accountID << endl;
         cout << "ÀÌ¸§ : ";
-        cout << AccountName << endl;
+        cout << accountName << endl;
         cout << "ÀÜ¾× : ";
-        cout << AccountBalance << endl;
+        cout << accountBalance << endl;
     }
     Account::~Account() {
     }

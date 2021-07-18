@@ -11,8 +11,8 @@ private:
 public:
 	NormalAccount(const int ID, char* name, int balance, int intRate)
 		:Account(ID, name, balance), interestRate(intRate) {}
-	virtual void deposit(int balance) {
-		Account::deposit(balance);
-		Account::deposit(balance * (interestRate / 100.0));
+	virtual void Deposit(int balance) {
+		Account::Deposit(balance);
+		Account::Deposit(balance * (interestRate / 100.0));
 	}
 };
